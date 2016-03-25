@@ -1,0 +1,26 @@
+{
+  "name": "mosaic-transform",
+  "version": "0.1.0",
+  "description": "A small javascript library allowing to define CSS styles as functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec ./test/index.js",
+    "bump": "npm test && webpack && npm version patch && git push && git push --tags && npm publish",
+    "bump-minor": "npm run bump && npm version minor && git push && git push --tags && npm publish",
+    "commit": "npm test && webpack && git commit -a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mosaicjs/mosaic-transform"
+  },
+  "author": "Mikhail Kotelnikov <mikhail.kotelnikov@ubimix.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "d3-ease": "^0.7.0",
+    "mocha": "^2.4.2",
+    "webpack": "^1.12.12"
+  },
+  "dependencies": {
+    "d3-scale": "^0.6.4"
+  }
+}
