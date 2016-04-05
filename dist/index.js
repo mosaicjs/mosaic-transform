@@ -55,7 +55,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
-	    transform : __webpack_require__(1)
+	    transform : __webpack_require__(1),
+	    transformObject : __webpack_require__(3)
 	};
 
 
@@ -116,6 +117,38 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = transformObject;
+
+	function transformObject(obj) {
+	    var args = [];
+	    for (var i = 1; i < arguments.length; i++) {
+	        args.push(arguments[i]);
+	    }
+	    doTransform.call(this, obj, args);
+	}
+
+	function doTransform(context, obj, args) {
+	    var result = {};
+	    Object.keys(obj).forEach(function(key) {
+	        let
+	        value = obj[key];
+	        if (typeof value === 'function') {
+	            value = value.apply((context || obj), args);
+	        }
+	        if (typeof value === 'object') {
+	            value = doTransform(context, value, args);
+	        }
+	        if (value) {
+	            result[key] = value;
+	        }
+	    }, this);
+	    return result;
+	}
 
 /***/ }
 /******/ ])
