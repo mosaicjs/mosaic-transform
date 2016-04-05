@@ -129,7 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var i = 1; i < arguments.length; i++) {
 	        args.push(arguments[i]);
 	    }
-	    doTransform.call(this, obj, args);
+	    return doTransform.call(this, obj, args);
 	}
 
 	function doTransform(context, obj, args) {
