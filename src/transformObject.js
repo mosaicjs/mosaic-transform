@@ -5,7 +5,7 @@ function transformObject(obj) {
     for (var i = 1; i < arguments.length; i++) {
         args.push(arguments[i]);
     }
-    return doTransform.call(this, obj, args);
+    return doTransform(this, obj, args);
 }
 
 function doTransform(context, obj, args) {
@@ -18,7 +18,7 @@ function doTransform(context, obj, args) {
         if (typeof value === 'object') {
             value = doTransform(context, value, args);
         }
-        if (value) {
+        if (value !== undefined) {
             result[key] = value;
         }
     }, this);
